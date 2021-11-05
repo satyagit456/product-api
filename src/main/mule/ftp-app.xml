@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/ftp http://www.mulesoft.org/schema/mule/ftp/
 				<fixed-frequency frequency="2" timeUnit="MINUTES"/>
 			</scheduling-strategy>
 		</scheduler>
-		<logger level="INFO" doc:name="Logger" doc:id="2a272554-6ad1-407e-9be5-0771bfeac747" message="before reading the file:::#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="2a272554-6ad1-407e-9be5-0771bfeac747" message="before reading the data:::#[payload]"/>
 		<ftp:read doc:name="Read" doc:id="fe590994-4d70-4642-b7f0-11c78f9fa04a" config-ref="FTP_Config" path="employee.xml"/>
 		<logger level="INFO" doc:name="Logger" doc:id="e3fd5832-a4ff-4250-8f49-e6c0f7c635d5" message="after reading the file:::#[payload]"/>
 	</flow>
