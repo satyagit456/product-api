@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ftp="http://www.mulesoft.org/schema/mule/ftp" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ftp http://www.mulesoft.org/schema/mule/ftp/current/mule-ftp.xsd">
+	<ftp:config name="FTP_Config" doc:name="FTP Config" doc:id="1d22ceba-869d-4d48-92db-d20df8a8838d" >
+		<ftp:connection workingDir="/employeedir" host="localhost" username="chinni" password="ftp" />
+	</ftp:config>
+	<flow name="ftp-appFlow" doc:id="18bbcfe3-3878-4d1c-bcff-7ecaaedf5ec5" >
+		<scheduler doc:name="Scheduler" doc:id="f2c989c2-4a62-4a28-9cf7-4777aaaa94c8" >
+			<scheduling-strategy >
+				<fixed-frequency frequency="2" timeUnit="MINUTES"/>
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="Logger" doc:id="2a272554-6ad1-407e-9be5-0771bfeac747" message="before reading the file:::#[payload]"/>
+		<ftp:read doc:name="Read" doc:id="fe590994-4d70-4642-b7f0-11c78f9fa04a" config-ref="FTP_Config" path="employee.xml"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e3fd5832-a4ff-4250-8f49-e6c0f7c635d5" message="after reading the file:::#[payload]"/>
+	</flow>
+</mule>
